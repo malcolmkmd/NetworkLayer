@@ -22,7 +22,6 @@ class NetworkLayerTests: XCTestCase {
     }
     
     func testURLEncoding() {
-        let urlEncoder = URLEncoding()
         guard let url = URL(string: "https:www.google.com/") else {
             XCTAssertTrue(false, "Could not instantiate url")
             return
@@ -33,7 +32,7 @@ class NetworkLayerTests: XCTestCase {
                           "Email": "malcolm@network.com",
                           "isCool": true]
         do {
-            try urlEncoder.encode(urlRequest: &urlRequest, with: parameters)
+            try URLParameterEncoder.encode(urlRequest: &urlRequest, with: parameters)
             guard let fullURL = urlRequest.url else {
                 XCTAssertTrue(false, "urlRequest url is nil.")
                 return
